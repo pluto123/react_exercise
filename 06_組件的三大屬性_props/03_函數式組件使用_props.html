@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數式組件使用 props</title>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="test"></div>
+    <!-- 引入 react 核心庫 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- 引入 react-dom，用於 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 引入 prop-type 用於對組件的標淺屬性進行檢查與限制 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+
+    <script type="text/babel">
+        function People(props) {
+            const {name, sex, age} = props
+            return (
+                <ul>
+                    <li>姓名: {name}</li>
+                    <li>性別: {sex}</li>
+                    <li>年齡: {age}</li>
+                </ul>
+            )
+        }
+        People.propTypes = {
+            name: PropTypes.string.isRequired,
+            sex: PropTypes.string,
+            age: PropTypes.number,
+            say: PropTypes.func
+        }
+        People.defaultProps = {
+            sex: "不詳"
+        }
+        
+        const data = {name:"tom", age:18, say:"hello"} // 模擬由後端傳回的數據
+        ReactDOM.render(<People {...data}/>, document.getElementById('test'))
+    </script>
+</body>
+</html>

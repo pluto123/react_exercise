@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回調函數形式 ref 的使用</title>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="test"></div>
+    <!-- 引入 react 核心庫 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- 引入 react-dom，用於 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 引入 prop-type 用於對組件的標淺屬性進行檢查與限制 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            myClick = () => {
+                const {input1} = this
+                console.log(input1.value)
+            }
+            render() {
+                return (
+                    <div>
+                        <input ref={(input1Element) => {this.input1=input1Element;}} type="text" defaultValue="test callback"/>
+                        <button onClick={this.myClick}>Click Me</button>
+                    </div>
+                )
+            }
+        }
+    
+        ReactDOM.render(<MyComponent/>, document.getElementById('test'))
+    </script>
+</body>
+</html>

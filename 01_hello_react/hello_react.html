@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_reactjs</title>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="test"></div>
+    <!-- 引入 react 核心庫 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- 引入 react-dom，用於 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 
+        此處 type 一定要設為 text/babel
+        這樣 babel 才知道要將此處的 jsx 編譯成 js
+     -->
+    <script type="text/babel">
+        // 1. 創建虛擬 DOM
+        const VDOM = <h1>Hello, React</h1>  // 此處一定不要寫引號，因為不是字串
+        // 2. 渲染虛擬 DOM 到頁面上
+        ReactDOM.render(VDOM, document.getElementById('test'))
+        debugger;
+    </script>
+</body>
+</html>

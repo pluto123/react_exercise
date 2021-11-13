@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 新版生命週期 getSnapshotBeforeUpdate 介紹</title>
+    <style>
+        .list{
+            width: 200px;
+            height: 150px;
+            background-color: paleturquoise;
+            overflow: auto;
+        }
+        .message{
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="test"></div>
+    <!-- 引入 react 核心庫 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- 引入 react-dom，用於 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- 引入 prop-type 用於對組件的標淺屬性進行檢查與限制 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+
+    <script type="text/babel">
+        class MessageList extends React.Component {
+            
+            state = {messageArr:[]}
+
+            componentDidMount() {
+                setInterval(() => {
+                    // 獲取元狀態
+                    const {messageArr} = this.state
+                    // 模擬取得一條訊息
+                    const message = '訊息' + (messageArr.length + 1)
+                    // 更新狀態
+                    this.setState({messageArr:[message, ...messageArr]})
+                }, 1000);
+            }
+
+            // 可建立快照供 componentDidUpdate() 使用
+            getSnapshotBeforeUpdate() {
+                return this.refs.list.scrollHeight
+            }
+
+            // 可由第三個參數取得快照資訊
+            componentDidUpdate(prevProps, prevState, height) {
+                this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+            }
+
+            render() {
+                return (
+                    <div className="list" ref="list">
+                        {
+                            this.state.messageArr.map((message, index) => {
+                                return <div key={index} className="message">{message}</div>
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<MessageList/>, document.getElementById('test'))
+    </script>
+</body>
+</html>

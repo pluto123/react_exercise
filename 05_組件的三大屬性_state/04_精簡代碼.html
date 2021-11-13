@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透過事件改變 state - 精簡版</title>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+    <div id="test"></div>
+    <!-- 引入 react 核心庫 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- 引入 react-dom，用於 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- 引入 babel，用於將 jsx 轉為 js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Weather extends React.Component {
+            // 1. 初始化 state
+            state = {isHot:true}
+            // remove by 1. and 2.
+            //constructor(props) {
+                //super(props)
+                // remove by 1.
+                // this.state = {isHot:false}
+                // remove by 2.
+                // this.changeWeather = this.myClick.bind(this)
+            //}
+            render() {
+                const {isHot} = this.state
+                return <h2 onClick={this.changeWeather}>今天天氣{isHot?'炎熱':'涼爽'}</h2>
+            }
+            // 2. 重新編寫
+            changeWeather = ()=>{
+                const isHot = this.state.isHot
+                this.setState({isHot:!isHot})
+            }
+            // remove by 2.
+            /*myClick() {
+                const isHot = this.state.isHot
+                this.setState({isHot:!isHot})
+            }*/
+        }
+          
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+    </script>
+</body>
+</html>
