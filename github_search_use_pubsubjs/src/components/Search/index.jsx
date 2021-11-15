@@ -15,7 +15,7 @@ export default class Search extends Component {
                 PubSub.publish('github_search', {isLoading:false, users:response.data.items})
             },
             error => {
-                // 請求成功後更新 App 狀態
+                // 請求失敗後更新 App 狀態
                 PubSub.publish('github_search', {isLoading:false, err:error.message})
             }
         )

@@ -20,7 +20,7 @@ export default class Search extends Component {
             },
             error => {
                 console.log('失敗', error)
-                // 請求成功後更新 App 狀態
+                // 請求失敗後更新 App 狀態
                 this.props.updateAppState({isLoading:false, err:error.message})
             }
         )
