@@ -11,9 +11,15 @@ export default class List extends Component {
     }
 
     componentDidMount() {
-        PubSub.subscribe('github_search', (msg, stateObj)=>{
+        // 之後要利用此 token 解除訂閱
+        this.token = PubSub.subscribe('github_search', (msg, stateObj)=>{
             this.setState(stateObj)
         })
+    }
+
+    componentWillUnmount() {
+        // 當元件卸載後就取消訂閱
+        PubSub.unsubscribe(this.token)
     }
 
     render() {
