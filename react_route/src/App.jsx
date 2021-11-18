@@ -1,6 +1,6 @@
 // 創建外殼組件 App
 import {Component} from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Header from './components/Header'
 import MyNavLink from './components/MyNavLink'
 import Item1 from './pages/Item1'
@@ -25,8 +25,10 @@ export default class App extends Component {
                     <div className="col-xs-6">
                         <div className="panel">
                             <div className="panel-body">
-                                <Route path='/item1' component={Item1}></Route>
-                                <Route path='/item2' component={Item2}></Route>
+                                <Switch>
+                                    <Route path='/item1' component={Item1} />
+                                    <Route path='/item2' component={Item2} />
+                                </Switch>
                             </div>
                         </div>
                     </div>
