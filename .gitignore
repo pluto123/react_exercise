@@ -9,3 +9,4 @@ react_route/node_modules
 react_route_loss_css/node_modules
 route_path_match/node_modules
 nested_routes/node_modules
+pass_message_to_route_component_by_parameter/node_modules
