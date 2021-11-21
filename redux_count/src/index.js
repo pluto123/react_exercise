@@ -4,6 +4,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 // 引入 App 組件
 import App from './App'
+import store from './redux/store'
 
-// 渲染 App 到頁面上
 ReactDOM.render(<App/>, document.getElementById('root'))
+
+store.subscribe(()=>{
+    ReactDOM.render(<App/>, document.getElementById('root'))
+})

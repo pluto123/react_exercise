@@ -1,40 +1,44 @@
 import React, { Component } from 'react';
+import store from '../../redux/store';
 
 export default class Count extends Component {
-    state = {
-        count: 0
-    }
     
+
+/*    componentDidMount() {
+        // 檢測 redux 中狀態變化，如果有變化則調用 render
+        store.subscribe(()=>{
+            this.setState({})
+        })
+    }*/
+
     increment = () => {
         const {value} = this.selectNumber
-        const {count} = this.state
-        this.setState({count:count+value*1})
+        // store 只負責狀態更新，不負責頁面更新
+        store.dispatch({type:'increment', data:value*1})
     }
     
     descrement = () => {
         const {value} = this.selectNumber
-        const {count} = this.state
-        this.setState({count:count-value*1})    
+        store.dispatch({type:'decrement', data:value*1})
     }
     incrementIfOdd = () => {
         const {value} = this.selectNumber
-        const {count} = this.state
+        const count = store.getState()
         if (count % 2 !== 0) {
-            this.setState({count:count+value*1})
+            store.dispatch({type:'increment', data:value*1})
         }
     }
     incrementAsync = () => {
         const {value} = this.selectNumber
-        const {count} = this.state
         setTimeout(()=>{
-            this.setState({count:count+value*1})
+            store.dispatch({type:'increment', data:value*1})
         }, 1000)
     }
 
     render() {
         return (
             <div>
-                <h1>當前計算結果 : {this.state.count}</h1>
+                <h1>當前計算結果 : {store.getState()}</h1>
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
