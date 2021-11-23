@@ -9,9 +9,9 @@ export default connect(
     // connect() 第一個參數用來映射狀態，返回值是一個對象，即會透過 UI 組件的 props 傳遞狀態
     state => ({count:state}),
     // 第二個參數用來映射操作狀態的方法，返回值也是一個對象，即會透過 UI 組件的 props 傳遞狀態
-    dispatch => ({
-        increment: (number) => dispatch(createIncrementAction(number)),
-        decrement: (number) => dispatch(createDecrementAction(number)),
-        incrementAsync: (number, time)=>dispatch(createIncrementAsyncAction(number, time))
-    })
+    {
+        increment: createIncrementAction,
+        decrement: createDecrementAction,
+        incrementAsync: createIncrementAsyncAction
+    }
 )(CountUI)
