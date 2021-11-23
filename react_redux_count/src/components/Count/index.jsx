@@ -16,7 +16,8 @@ export default class Count extends Component {
     }
     incrementIfOdd = () => {
         const {value} = this.selectNumber
-        const count = this.props  // 由 props 解構取值
+        const {count} = this.props  // 由 props 解構取值
+        
         if (count % 2 !== 0) {
             this.props.increment(value*1)
         }
