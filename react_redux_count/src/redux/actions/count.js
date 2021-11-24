@@ -3,7 +3,7 @@
     return {type:'increment', data}
 }*/
 
-import { DECREMENT, INCREMENT } from "./constant"
+import { DECREMENT, INCREMENT } from "../constant"
 //import store from "./store"
 
 // 可精簡為下

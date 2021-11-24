@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT } from "./constant"
+import { DECREMENT, INCREMENT } from "../constant"
 
 // 用於創建一個為 Count 組件服務的 reducer
 const initState = 0

@@ -2,7 +2,7 @@
 // 引入創建 store 的方法
 import {createStore, applyMiddleware} from 'redux'
 // 引入為 Count 組件服務的 reducer
-import countReducer from './count_reducer'
+import countReducer from './reducers/count'
 // 引入 redux-thunk 用於處理異步 action
 import thunk from 'redux-thunk'
 
