@@ -35,13 +35,8 @@ class Count extends Component {
     render() {
         return (
             <div>
-                {/* 因為在 src/containers/Count/index.jsx 是用 count 這個 key
-                    const mapStateToProps = function(state) {
-                        return {count:state}
-                    }
-                    所以在這邊取 state 就要用 count 來取
-                */}
-                <h1>當前計算結果 : {this.props.count}</h1>
+                <h2>我是 Count 組件</h2>
+                <h4>當前計算結果 : {this.props.count}, 下方組件總人數為:{this.props.persons.length}</h4>
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -59,7 +54,7 @@ class Count extends Component {
 // 創建並曝露一個 Count 的容器組件
 export default connect(
     // connect() 第一個參數用來映射狀態，返回值是一個對象，即會透過 UI 組件的 props 傳遞狀態
-    state => ({count:state}),
+    state => ({count:state.count, persons:state.persons}),
     // 第二個參數用來映射操作狀態的方法，返回值也是一個對象，即會透過 UI 組件的 props 傳遞狀態
     {
         increment: createIncrementAction,
