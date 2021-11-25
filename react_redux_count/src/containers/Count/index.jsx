@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // 引入 connect 用於連接 UI 組件與 redux
 import {connect} from 'react-redux'
 import { 
-    createDecrementAction, 
-    createIncrementAction, 
-    createIncrementAsyncAction 
+    increment, 
+    decrement, 
+    incrementAsync 
 } from '../../redux/actions/count'
 
 class Count extends Component {
@@ -57,8 +57,8 @@ export default connect(
     state => ({count:state.count, persons:state.persons}),
     // 第二個參數用來映射操作狀態的方法，返回值也是一個對象，即會透過 UI 組件的 props 傳遞狀態
     {
-        increment: createIncrementAction,
-        decrement: createDecrementAction,
-        incrementAsync: createIncrementAsyncAction
+        increment,
+        decrement,
+        incrementAsync
     }
 )(Count)
