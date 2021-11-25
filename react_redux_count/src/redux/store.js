@@ -10,6 +10,7 @@ import countReducer from './reducers/count'
 import personReducer from './reducers/person'
 // 引入 redux-thunk 用於處理異步 action
 import thunk from 'redux-thunk'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 // 匯總所有的 reducer 變為
 const allReducer = combineReducers({
@@ -17,4 +18,4 @@ const allReducer = combineReducers({
     persons: personReducer
 })
 
-export default createStore(allReducer, applyMiddleware(thunk))
+export default createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))
